@@ -1,9 +1,7 @@
 package com.rudineidebrito18.github.curso_jpa_hibernate.services;
 
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Order;
-import com.rudineidebrito18.github.curso_jpa_hibernate.entities.User;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.OrderRepository;
-import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

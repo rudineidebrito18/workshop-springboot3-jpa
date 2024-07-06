@@ -1,8 +1,10 @@
 package com.rudineidebrito18.github.curso_jpa_hibernate.config;
 
+import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Category;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Order;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.enums.OrderStatus;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.User;
+import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.CategoryRepository;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.OrderRepository;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,18 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private OrderRepository orderRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @Override
     public void run(String... args) throws Exception {
+        Category c1 = new Category(null, "Electronics");
+        Category c2 = new Category(null, "Books");
+        Category c3 = new Category(null, "Computers");
+        Category c4 = new Category(null, "Toys");
+
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
+
         User u1 = new User(null, "Fulano", "fulano@gmail.com", "949494", "12354");
         User u2 = new User(null, "Cicrano", "cicrano@gmail.com", "396834", "32563");
         User u3 = new User(null, "Deltano", "deltano@gmail.com", "356545", "74787");
