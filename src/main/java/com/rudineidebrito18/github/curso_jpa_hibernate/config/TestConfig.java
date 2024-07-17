@@ -2,10 +2,12 @@ package com.rudineidebrito18.github.curso_jpa_hibernate.config;
 
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Category;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Order;
+import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Product;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.enums.OrderStatus;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.User;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.CategoryRepository;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.OrderRepository;
+import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.ProductRepository;
 import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -27,6 +29,9 @@ public class TestConfig implements CommandLineRunner {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private ProductRepository productRepository;
+
     @Override
     public void run(String... args) throws Exception {
         Category c1 = new Category(null, "Electronics");
@@ -35,6 +40,14 @@ public class TestConfig implements CommandLineRunner {
         Category c4 = new Category(null, "Toys");
 
         categoryRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
+
+        Product p1 = new Product(null, "The Lord of the Rings", "Lorem Ipsum is simply dummy text of the printing", 76.7 , "image");
+        Product p2 = new Product(null, "Iphone 15 pro max", " Lorem Ipsum has been the industry's standard dummy", 1000.0 , "image");
+        Product p3 = new Product(null, "Little Principle", "Lorem Ipsum is simply dummy text of the printing", 36.5 , "image");
+        Product p4 = new Product(null, "Notebook acer Predator top", " Lorem Ipsum has been the industry's standard dummy", 706.75 , "image");
+        Product p5 = new Product(null, "Remote Car Hot wheels", " Lorem Ipsum has been the industry's standard", 96.7 , "image");
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
 
         User u1 = new User(null, "Fulano", "fulano@gmail.com", "949494", "12354");
         User u2 = new User(null, "Cicrano", "cicrano@gmail.com", "396834", "32563");
