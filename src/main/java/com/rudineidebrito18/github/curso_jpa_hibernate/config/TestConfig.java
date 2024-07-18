@@ -1,14 +1,8 @@
 package com.rudineidebrito18.github.curso_jpa_hibernate.config;
 
-import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Category;
-import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Order;
-import com.rudineidebrito18.github.curso_jpa_hibernate.entities.Product;
+import com.rudineidebrito18.github.curso_jpa_hibernate.entities.*;
 import com.rudineidebrito18.github.curso_jpa_hibernate.entities.enums.OrderStatus;
-import com.rudineidebrito18.github.curso_jpa_hibernate.entities.User;
-import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.CategoryRepository;
-import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.OrderRepository;
-import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.ProductRepository;
-import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.UserRepository;
+import com.rudineidebrito18.github.curso_jpa_hibernate.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -31,6 +25,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private OrderItemRepository orderItemRepository;
 
     @Override
     public void run(String... args) throws Exception {
@@ -73,5 +70,13 @@ public class TestConfig implements CommandLineRunner {
         Order o4 = new Order(null, Instant.parse("2024-01-04T15:00:00Z"), OrderStatus.SHIPPED, u2);
 
         orderRepository.saveAll(Arrays.asList(o1, o2, o3, o4));
+
+        OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice());
+        OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice());
+        OrderItem oi3 = new OrderItem(o2, p2, 1, p2.getPrice());
+        OrderItem oi4 = new OrderItem(o2, p4, 1, p4.getPrice());
+        OrderItem oi5 = new OrderItem(o3, p5, 2, p5.getPrice());
+
+        orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4, oi5));
     }
 }
