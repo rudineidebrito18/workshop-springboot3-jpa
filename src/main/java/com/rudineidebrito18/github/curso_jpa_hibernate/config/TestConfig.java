@@ -39,15 +39,24 @@ public class TestConfig implements CommandLineRunner {
         Category c3 = new Category(null, "Computers");
         Category c4 = new Category(null, "Toys");
 
-        categoryRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
-
         Product p1 = new Product(null, "The Lord of the Rings", "Lorem Ipsum is simply dummy text of the printing", 76.7 , "image");
         Product p2 = new Product(null, "Iphone 15 pro max", " Lorem Ipsum has been the industry's standard dummy", 1000.0 , "image");
         Product p3 = new Product(null, "Little Principle", "Lorem Ipsum is simply dummy text of the printing", 36.5 , "image");
         Product p4 = new Product(null, "Notebook acer Predator top", " Lorem Ipsum has been the industry's standard dummy", 706.75 , "image");
         Product p5 = new Product(null, "Remote Car Hot wheels", " Lorem Ipsum has been the industry's standard", 96.7 , "image");
 
+        categoryRepository.saveAll(Arrays.asList(c1, c2, c3, c4));
         productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
+        p1.getCategories().add(c2);
+        p2.getCategories().add(c1);
+        p3.getCategories().add(c2);
+        p4.getCategories().add(c1);
+        p4.getCategories().add(c3);
+        p5.getCategories().add(c4);
+
+        productRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5));
+
 
         User u1 = new User(null, "Fulano", "fulano@gmail.com", "949494", "12354");
         User u2 = new User(null, "Cicrano", "cicrano@gmail.com", "396834", "32563");

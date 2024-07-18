@@ -1,5 +1,6 @@
 package com.rudineidebrito18.github.curso_jpa_hibernate.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -19,7 +20,8 @@ public class Category implements Serializable {
     private Long id;
     private String name;
 
-    @OneToMany
+    @JsonIgnore
+    @ManyToMany(mappedBy = "categories")
     private Set<Product> products = new HashSet<>();
 
     public Category(){
